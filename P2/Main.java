@@ -1,47 +1,109 @@
-import java.util.Scanner;
+// SINGLE INHERITANCE 
+class Vehicle {
+    String brand = "Toyota";
 
-
-class Student {
-    int rollNo;
-    String name;
-    double marks1, marks2, marks3;
-  
-    public Student(int rollNo, String name, double marks1, double marks2, double marks3) {
-        this.rollNo = rollNo;
-        this.name = name;
-        this.marks1 = marks1;
-        this.marks2 = marks2;
-        this.marks3 = marks3;
+    public void startEngine() {
+        System.out.println("The vehicle engine has started.");
     }
+}
 
-    public double calculateTotal() {
-        return marks1 + marks2 + marks3;
+class Car extends Vehicle {
+    String model = "Camry";
+
+    public void displayCarDetails() {
+        System.out.println("Car Brand: " + brand);
+        System.out.println("Car Model: " + model);
     }
+}
 
-
-    public double calculatePercentage() {
-        return (calculateTotal() / 300) * 100;
+public class SingleInheritanceDemo {
+    public static void main(String[] args) {
+        System.out.println("=== Single Inheritance ===");
+        Car myCar = new Car();
+        myCar.startEngine();      
+        myCar.displayCarDetails(); 
     }
+}
 
-    public void displayDetails() {
-        System.out.println("Roll No: " + rollNo);
-        System.out.println("Name   : " + name);
-        System.out.println("Marks  : [" + marks1 + ", " + marks2 + ", " + marks3 + "]");
-        System.out.println("Total  : " + calculateTotal());
-        System.out.printf("Percent: %.2f%%\n", calculatePercentage());
-        System.out.println("-----------------------");
+// Multilevel inheritance
+class Person {
+    String name = "Anjali";
+
+    public void showPerson() {
+        System.out.println("Name: " + name);
     }
 }
 
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("--- Student Details ---\n");
+class Employee extends Person {
+    int empId = 4052;
 
-        Student student1 = new Student(101, "Aarav Sharma", 85.5, 90.0, 78.0);
-        Student student2 = new Student(102, "Isha Patel", 92.0, 88.5, 95.0);
-        Student student3 = new Student(103, "Rohan Das", 74.0, 65.0, 80.5);
-        student1.displayDetails();
-        student2.displayDetails();
-        student3.displayDetails();
+    public void showEmployee() {
+        System.out.println("Employee ID: " + empId);
     }
+}
+
+class Manager extends Employee {
+    String department = "Engineering";
+
+    public void showManagerDetails() {
+       
+        showPerson();   
+        showEmployee(); 
+        System.out.println("Department: " + department);
+    }
+}
+
+public class MultilevelInheritanceDemo {
+    public static void main(String[] args) {
+        System.out.println("\n=== Multilevel Inheritance ===");
+        Manager mgr = new Manager();
+        mgr.showManagerDetails(); 
+    }
+}
+
+// Hierarchical inheritance
+class Shape {
+    String color = "Red";
+
+    public void displayColor() {
+        System.out.println("Shape Color: " + color);
+    }
+}
+
+
+class Circle extends Shape {
+    double radius = 5.0;
+
+    public void calculateAreaCircle() {
+        double area = Math.PI * radius * radius;
+        System.out.printf("Circle Area: %.2f\n", area);
+    }
+}
+
+
+class Rectangle extends Shape {
+    double length = 4.0;
+    double width = 6.0;
+
+    public void calculateAreaRectangle() {
+        double area = length * width;
+        System.out.println("Rectangle Area: " + area);
+    }
+}
+
+public class HierarchicalInheritanceDemo {
+    public static void main(String[] args) {
+        System.out.println("\n=== Hierarchical Inheritance ===");
+        
+        Circle myCircle = new Circle();
+        myCircle.displayColor(); 
+        myCircle.calculateAreaCircle();
+
+        System.out.println("--------------------");
+
+        Rectangle myRect = new Rectangle();
+        myRect.displayColor();  
+        myRect.calculateAreaRectangle();
+    }
+}
